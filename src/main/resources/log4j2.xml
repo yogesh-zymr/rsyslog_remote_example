@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+<Properties>
+    <Property name="SyslogServer">5.213.182.55</Property>
+    <Property name="SyslogServerPort">514</Property>
+    <Property name="SyslogServerProtocol">UDP</Property>
+  </Properties>
+  
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+		<Syslog name="RFC5424" format="RFC5424" host="${sys:SyslogServer}" port="${sys:SyslogServerPort}"
+			protocol="${sys:SyslogServerProtocol}" appName="SAMPLE" includeMDC="true" facility="LOCAL0"
+			enterpriseNumber="18060" newLine="true" messageId="Audit" id="App" mdcId="mdc" />
+	</Appenders>
+	<Loggers>
+		<Logger name="org.apache.log4j.xml" level="all" />
+		<root level="all">
+			<appender-ref ref="console" />
+			<appender-ref ref="RFC5424" />
+		</root>
+	</Loggers>
+</Configuration>
