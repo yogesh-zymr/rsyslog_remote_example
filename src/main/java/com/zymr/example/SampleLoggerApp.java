@@ -1,4 +1,4 @@
-package io.sqooba.sample_remote_logging;
+package com.zymr.example;
 
 import java.util.Random;
 
